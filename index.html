@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="xhtml+xml;; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>Property — connecting politicians: мережевий аналіз декларацій української влади</title>
+    <meta name="description" content="30 000 вітчизняних чиновників і політиків мають цінні папери і корпоративні права (володіють бізнесом або часткою). Ми проаналізували кожного. Яких політиків і дерслужбовців пов’язує спільна власність і, можливо, спільні інтереси, та де шукати потенційний конфлікт інтересів" />
+    <meta name="keywords" content="VoxUkraine, social network analysis, SNA, Ukraine, мережевий аналіз, декларації, Порошенко, депутати, Верховна Рада, статки, бізнес, компанії" />
+    <meta name="author" content="VoxUkraine" />
+    <meta name="copyright" content="VoxUkraine" />
+    <meta name="application-name" content="" />
+       
+    <meta property="og:title" content="Property — connecting politicians: мережевий аналіз декларацій української влади" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="images/share.png" />
+    <meta property="og:url" content="https://voxukraine.org/longreads/declarations-graph/index.html" />
+    <meta property="og:description" content="30 000 вітчизняних чиновників і політиків мають цінні папери і корпоративні права (володіють бізнесом або часткою). Ми проаналізували кожного. Яких політиків і дерслужбовців пов’язує спільна власність і, можливо, спільні інтереси, та де шукати потенційний конфлікт інтересів" />
+       
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Property — connecting politicians: мережевий аналіз декларацій української влади" />
+    <meta name="twitter:description" content="30 000 вітчизняних чиновників і політиків мають цінні папери і корпоративні права (володіють бізнесом або часткою). Ми проаналізували кожного. Яких політиків і дерслужбовців пов’язує спільна власність і, можливо, спільні інтереси, та де шукати потенційний конфлікт інтересів" />
+    <meta name="twitter:image" content="images/share.png" />
+    <!-- Icon --> 
+    <link rel="shortcut icon" href="https://voxukraine.org/wp-content/uploads/2016/08/cropped-favicon-e1480670976718.png">
+
+    <!-- css --> 
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Tinos font --> 
+    <link href='https://fonts.googleapis.com/css?family=Tinos:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    
+    <style>
+    .viz {
+        overflow-x: auto;
+    }
+    .links line {
+      stroke: #999;
+      stroke-opacity: 0.6;
+    }
+
+    .nodes circle {
+      stroke: #fff;
+      stroke-width: 1.5px;
+    }
+    #legend{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .pic_graph {
+        max-width: 600px;
+        margin: 0 auto;
+        padding-right: 10px;
+        padding-left: 10px;
+        font-size: 18px;
+        text-align: left;
+        line-height: 1.3;
+    }
+    </style>
+
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="fixed-nav-bar">
+        <div class="logo"><a href="https://voxukraine.org"><img id="logo" src="images/logo.png" alt=""></a></div>
+    <div class="social-links">
+            <div class="ssk-group ssk-icon ssk-round">
+                <a href="#" class="ssk ssk-facebook"></a>
+                <a href="#" class="ssk ssk-twitter"></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- заглавная картинка -->
+    <div class="header"><img src="images/main.jpg"></div>
+
+    <!-- заголовок -->
+    <div class="heading"><h2>Property — connecting politicians: мережевий аналіз декларацій української влади</h2></div>
+    
+    <!-- подзаголовок -->
+    <div class="wide"><h4 align="center"><b>30 000 вітчизняних чиновників і політиків мають цінні папери і корпоративні права (володіють бізнесом або часткою). Ми проаналізували кожного. Яких політиків і дерслужбовців пов’язує спільна власність і, можливо, спільні інтереси, та де шукати потенційний конфлікт інтересів.</b></h4></div>
+    <p class="author">Автор: <a target="_blank" href="https://www.linkedin.com/in/olga-makarova-8b3a4b9">Ольга Макарова</a>, аналітик НГО &#171;Канцелярська сотня&#187;</p>
+    <!-- текст -->
+    <div class="skinny">
+    <p>В Україні не розвинений фондовий ринок і дуже незначна частка людей використовують акції, паї, долі та інші корпоративні права для інвестицій. У владній верхівці інша ситуація: наприклад, серед голів ОДА та народних депутатів кожен другий володіє акціями чи правами власності в бізнесі, серед членів Кабміну кожен п’ятий, а у президента України одна з найрізноманітніших &#171;колекцій&#187;: він має цінні папери, корпоративні права чи є бенефіціаром у понад 100 компаніях. Власність високопосадовців та чиновників не привід для заздрощів і &#171;класової ворожнечі&#187;, але це предмет ретельного аналізу, пошуку закономірностей та аномалій. Так, якщо двоє або більше політиків, депутатів, урядовців, суддів є співвласниками компанії, то існує висока імовірність, що їх пов’язують спільні інтереси чи наявний потенційний конфлікт інтересів, якщо їхня службова діяльність має відношення до сфери діяльності компанії. Кінцева мета такого аналізу &#8212; сприяти прозорості, підзвітності, виявленню й купуванню конфліктів інтересів та, як результат, зростанню ефективності української влади. </p>
+    <p>Щоб знайти зв’язки між чиновниками (співвласниками в компаніях), ми перевірили всі їхні електронні декларації, застосувавши мережевий аналіз. Загалом ми дослідили більше 30 000 осіб, які задекларували цінні папери, корпоративні права або компанії, в яких вони чи члени їхніх родин є бенефіціарами.</p>
+    <h3>Як ми рахували</h3>
+    <p>З 2015 року українські чиновники подають онлайн-декларації про доходи та майно. Ці дані перебувають у відкритому доступі, а нинішня форма декларації передбачає надання багатьох даних про юридичних осіб, пов’язаних з декларантом: компанії &#8212; джерела доходу, місця розміщення грошових активів та фінансових зобов’язань, організації, членом яких є декларант, а також компанії, в яких декларант є власником у тій чи іншій формі: має цінні папери, корпоративні права або є бенефіціаром. </p>
+    <p>Ми проаналізували дані про власність у компаніях &#8212; цінні папери, корпоративні права або належність до бенефіціарів. Ми обмежилися лише даними про власність, не беручи до уваги, наприклад, членство в організаціях та об’єднаннях, оскільки власність створює найбільш сильний зв’язок, тоді як у даних про джерела доходів або про членство в організаціях багато &#171;шуму&#187; і вони потребують додаткової фільтрації. </p>
+    <p>Джерело даних &#8212; сайт проекту &#171;<a target="_blank" href="https://declarations.com.ua/">Декларації</a>&#187; ГО &#171;Канцелярська сотня&#187;, що надає АРІ для доступу до даних. Для аналізу ми обрали річні декларації за 2017 рік. Власність у компаніях задекларували близько 30 000 осіб (~3% від загальної кількості). Для аналізу було використано мову програмування Python, зокрема пакет networkx. Використаний код доступний на <a target="_blank" href="https://github.com/pro100olga/declarations/tree/master/people_and_companies_2017">Github</a>.</p>
+    <h3>Які компанії найпопулярніші серед українських чиновників?</h3>
+    <p>Спершу подивимось, які компанії найбільш &#171;популярні&#187; серед чиновників, тобто мають найбільшу кількість власників. Очікувано, це великі акціонерні товариства, акції яких обертаються (чи торгувалися раніше) на фондовому ринку. Серед топ-10 найпопулярніших компаній &#171;Укррічфлот&#187; (задекларували 375 осіб), &#171;Укртелеком&#187; (327), &#171;Запоріжсталь&#187; (299) та інші. Загалом частки власності в цих компаніях мають більше 2000 декларантів. </p>
+    <p class="vrezka">Наведіть на вузол для деталізації</p>
+</div>
+    <div class="viz"><center><svg id="graph1" width="1060" height="700"></svg></center></div>
+    <div class="skinny">
+    <p>Схема 1. Топ-10 компаній.</p>
+    <p>На схемі 1, яка відображає топ-10 найбільш популярних компаній, видно, що ці акціонерні товариства &#171;пов’язані&#187; між собою: є декларанти, які володіють частками в декількох компаніях. Наприклад, <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_99042d99-0e63-488a-96d0-f837a3850f00">суддя</a>, <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_1a0785a8-8a32-4fe5-b6f8-d529dbc990de">податківець</a> та <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_26b0346a-dcf7-43c0-bf45-ec214969bedd">співробітник НБУ</a> задекларували акції &#171;Укртелекому&#187; і &#171;Азовсталі&#187;. Але такі зв’язки, скоріше за все, ні про що не свідчать: акціонери публічних компаній з великою імовірністю не знайомі один з одним.</p>
+    <p>Окрім популярних компаній можна також відібрати &#171;популярних&#187; декларантів &#8212; тих, що мають власність у багатьох компаніях. Четверо осіб задекларували власність у більш ніж 100 компаніях. Це президент <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_c9e4d7dd-d6b7-44b8-9e26-12e756d36e04">Петро Порошенко</a>, народний депутат <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_da4751c5-5375-45ed-865c-0327e4709f03">Вадим Новинський</a>, власник мережі &#171;Фуршет&#187; <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_04735bf0-04df-4827-a95b-98363ad91d64">Ігор Баленко</a>, і найцікавіший випадок &#8212; депутат сільради в Харківській області <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_cf260705-9a2a-4c6c-b766-c4059be1b2e1">Олександр Заболотний</a> (про його більш ніж 150 компаній ЗМІ вже писали, наприклад, <a targe="_blank" href="https://www.epravda.com.ua/rus/news/2018/01/29/633490/">тут</a>). </p>
+    <p>Тепер подивимось, як декларанти &#171;пов’язані&#187; бізнесом (компаніями) між собою. </p>
+    <h3>Хто володіє компаніями разом з президентом?</h3>
+    <p>Найбільш сильними будемо вважати зв’язки, коли декларанти мають власність в одній і тій самій компанії. </p>
+    <p>Визначимо людей, що мають власність, наприклад, у компаніях, в яких акціонером/бенефіціаром чи власником корпоративних прав є <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_c9e4d7dd-d6b7-44b8-9e26-12e756d36e04">Петро Порошенко</a> (ми обрали президента як публічну і найбільш впливову фігуру, яка до того ж має дуже широкі бізнес-інтереси). </p>
+    <p class="vrezka">Наведіть на вузол для деталізації</p>
+</div>
+    <div class="viz"><center><svg id="graph2" width="960" height="400"></svg></center></div>
+    <div id="legend">
+        <svg height="65">
+        <circle cx="10" cy="10" r="5" fill="#5195da"/>
+        <text x="20" y="15" fill="black">Президент</text>
+        <circle cx="10" cy="30" r="5" fill="#52c38a"/>
+        <text x="20" y="35" fill="black">Компанії</text>
+        <circle cx="10" cy="50" r="5" fill="black"/>
+        <text x="20" y="55" fill="black">Декларанти</text>
+        </svg>
+    </div>
+    <div class="skinny">
+    <p>Схема 2. Компанії президента.</p>
+    <p>Порошенко має власність у декількох великих компаніях, пов’язаних з багатьма декларантами: це Промінвестбанк (доля Порошенка 0,000015%), Вінницька кондитерська фабрика (основний акціонер &#171;Рошен&#187; &#8212; 99%, співробітникам фабрики належить близько 1%) та Крижопільський цукровий завод. На графіку це три вузли з найбільшою кількістю &#171;сусідів&#187;. </p>
+    <p>Але нас цікавлять інші зв’язки. Наприклад, є двоє декларантів, що мають спільні з Порошенком частки в декількох компаніях. Такий зв’язок набагато міцніший і потребує пильної уваги. Дійсно, ці двоє осіб &#8212; бізнес-партнери Порошенка, що зараз обіймають державні посади: народний депутат <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_dcf3ba41-ac3a-4e60-9f6c-1c12bfbfa83f">Ігор Кононенко</a> та перший секретар РНБО <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_579bbccc-04b6-4362-bb33-2a0c2d75e899">Олег Гладковський</a>. Усі троє мають власність у Міжнародному інвестиційному банку, а також у кіпрській компанії Ri-System Limited, Кононенко має спільну з президентом власність ще у шести компаніях.</p>
+    <h3>Бізнес-зв’язки серед топ-чиновників</h3>
+    <p>Аналіз зв’язків окремих чиновників або пошук зв’язків між окремими людьми &#8212; це, так би мовити, точкова зброя. Але можна також проаналізувати зв’язки в межах певної групи декларантів. Для прикладу розглянемо найвищі щаблі органів виконавчої та законодавчої влади: президента, парламент, Кабінет Міністрів, голів ОДА, а також керівництво деяких державних органів, таких як Антикорупційне бюро, Генпрокуратура, Національний банк, Антимонопольний комітет, комісії з регулювання ринків: НКРЕКП, НКРЗІ, НКЦПФР, НРПТР,  Національна рада з питань телебачення і радіомовлення. У групи потрапили керівники та їхні заступники, члени комісій і правлінь, уповноважені. Загалом було проаналізовано більше 600 осіб, з них 423 чинних депутати парламенту. </p>
+    <p>Понад 40% цих чиновників задекларували цінні папери, корпоративні права або компанії, де вони чи члени їхніх родин є бенефіціарами. Найвищий показник серед голів обладміністрацій (55%) та народних депутатів (51%). Показник Кабміну (сюди входять як міністри, так і їхні заступники і державні секретарі міністерств) &#8212; 21%, у решти чиновників &#8212; 24%.</p>
+    <p>Що ж до народних депутатів, то найбільше бенефіціарів, власників цінних паперів чи інших корпоративних прав серед представників партій &#171;Воля народу&#187; (84%), &#171;Відродження&#187; (67%) та &#171;Опозиційний блок&#187; (63%), найменше &#8212; у &#171;Народного фронту&#187; (32%) та &#171;РПЛ&#187; (38%).</p>
+    <p>Якщо розглянути тільки найтісніші зв’язки (участь в одній і тій самій компанії), то таких прикладів серед топ-чиновників буде небагато: 37 осіб із 261 (~14%). На графіку нижче такі зв’язки позначені лініями. Більшість топ-чиновників не пов’язані з іншими особами прямими бізнес-стосунками і позначені на графіку окремими точками.</p>
+    <p class="vrezka">Наведіть на вузол для деталізації</p>
+</div>
+    <div class="viz"><center><svg id="graph3" width="1260" height="600"></svg></center></div>
+    <div id="legend">
+        <svg height="105">
+        <circle cx="10" cy="10" r="5" fill="#5195da"/>
+        <text x="20" y="15" fill="black">Парламент</text>
+        <circle cx="10" cy="30" r="5" fill="purple"/>
+        <text x="20" y="35" fill="black">Кабмін</text>
+        <circle cx="10" cy="50" r="5" fill="#52c38a"/>
+        <text x="20" y="55" fill="black">Президент</text>
+        <circle cx="10" cy="70" r="5" fill="#ffca28"/>
+        <text x="20" y="75" fill="black">Голови ОДА</text>
+        <circle cx="10" cy="90" r="5" fill="black"/>
+        <text x="20" y="95" fill="black">Інші</text>
+        </svg>
+    </div>
+    <div class="skinny">
+    <p>Схема 3. Зв'язки у найвищих владних структурах.</p>
+    <p>Увагу привертає тісно переплетена група із семи декларантів (два міністри &#8212; Кубів і Гриневич, чотири депутати та голова комісії з цінних паперів). Однак ці семеро задекларували цінні папери &#8212; облігації внутрішнього держзайму, випущені Міністерством фінансів. Такі зв’язки не можна вважати доказом конфлікту інтересів чи спільних бізнес-інтересів.</p>
+</div>
+<div class="pic_graph"> 
+    <p><img src="images/pic1.png" align="left" vspace="5" hspace="5">Ще одна досить велика група включає президента. Як ми вже зазначали, він пов’язаний з Ігорем Кононенком (задекларовано 8 спільних компаній). Крім того, через володіння акціями Промінвестбанку він пов’язаний з депутатами <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_8053cb18-691e-4aa2-8a63-0e469feb7b7e">Нестором Шуфричем</a> та <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_f34bd828-73dc-4e0a-ae13-02fe6ac9e7aa">Юхимом Звягільським</a>, а також першим заступником міністра молоді та спорту <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_b9f2a8d2-90a1-443c-84e2-e63b50469f00">Ігорем Гоцулом</a> та першим заступником міністра регіонального розвитку, будівництва та ЖКГ <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_aee354ee-925d-4768-adb5-101c05a0b199">В’ячеславом Негодою</a>. Утім, Промінвестбанк &#8212; це нетипове акціонерне товариство: 99,77% у володінні російського &#171;Внешэкономбанк&#187;, який на 100% належить Російській Федерації, а 0,23% розпорошені серед тисяч акціонерів. Володіння його акціями задекларували більше 80 чиновників, тож важко роботи висновки з таких зв’язків. </p>
+    <p><img src="images/pic2.png" align="right" vspace="5" hspace="5">Є ще декілька акціонерних товариств, де перетинаються відомі політики й чиновники. Наприклад, депутат &#171;Опоблоку&#187; Сергій Льовочкін має &#171;зв’язок&#187; із членом НКЦПФР <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_cbd2858f-2cd3-42a1-8eaa-8c358add6163">Олександром Панченком</a> &#8212; вони обидва володіють акціями &#171;Укртелекому&#187;. Однак &#171;Укртелеком&#187; &#8212; одне з найбільших акціонерних товариств у нашому дослідженні (327 декларантів мають його акції), тож такий зв’язок може ні про що не свідчити. Сам Панченко також має акції інших компаній, зокрема &#171;Мотор Січ&#187;, володіння акціями якої задекларували понад 80 чиновників, у тому числі народний депутат &#171;Волі народу&#187; <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_f157958b-b412-4159-99de-2d28d35b23c3">В’ячеслав Богуслаєв</a> та в.о. міністра фінансів <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_222eea6a-bb2c-4fc9-bcfb-fd4ffb1290c7">Оксана Маркарова</a>. </p>
+    <p>Однак є й цікаві групи, пов’язані зв’язками в менш &#171;розпорошених&#187; компаніях. Наприклад, група з трьох людей &#8212; депутатів &#171;Опоблоку&#187; <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_ed3c9066-0d6f-4f35-9dc7-ce5ff9a8958c">Сергія Льовочкіна</a> і <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_df91d497-4298-4746-ae7c-0eefedba3fa5">Юлії Льовочкіної</a> та депутата &#171;Волі народу&#187; <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_881a8f75-ea95-4241-beb0-951a75b79095">Івана Фурсіна</a>. Юлія Льовочкіна та Іван Фурсін &#8212; акціонери АБ &#171;Кліринговий дім&#187; та бенефіціари кіпрської компанії Monier Ventures Limited і української промислової групи "Монієр". Разом із Сергієм Льовочкіним Юлія Льовочкіна є бенефіціаром зареєстрованої на Сейшелах компанії Novembe Ventures Ltd. </p>
+    <p><img src="images/pic3.png" align="left" vspace="5" hspace="5"> Інші зв’язки утворені парами чиновників. Тут є родичі: наприклад, брати <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_249ebce8-c162-4980-91c8-af01a0934566">Михайло</a> та <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_88456ce7-5cb2-4c9d-8243-7d71c9a67005">Дмитро Добкіни</a>, родини яких володіють акціями Володимир-Волинської птахофабрики, або депутат &#171;БПП&#187; <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_42e12bc8-2758-4be7-aa2f-cdfa6f51fa9f">Анатолій Кузьменко</a> та його син, голова Кіровоградської ОДА <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_86c8d65d-a892-4e69-85df-316f289e7fb9">Сергій Кузьменко</a> &#8212; в їхньому спільному володінні 18 компаній, у тому числі Олександрійський цукровий завод, Світловодський річковий термінал та ФК &#171;Олександрія&#187;. </p>
+    <p><img src="images/pic4.png" align="right" vspace="5" hspace="5">Деякі депутати пов’язані бізнес-зв’язками через членів родин. Наприклад, дружини депутатів &#171;Волі народу&#187; <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_1be7470c-61d4-4de8-a5d8-d8ea9e74afe4">Василя Петьовки</a> та позафракційного <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_ed4fb65f-fef8-45d1-9ec2-9bd26e918ff0">Івана Балоги</a> є акціонерами Мукачівської автобази, а також бенефіціарами компаній &#171;Закарпатагрохолдинг&#187; та 
+    &#171;Закарпатсільгоспсервіс&#187;. Дружини депутатів &#171;Самопомочі&#187; <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_c9cef9d9-9eb9-4297-9580-3dfa2df81890">Льва Підлісецького</a> та <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_257570df-5119-4312-81f6-9af483f7c7a4">Олега Лаврика</a> є акціонерами компанії &#171;Південьзахіделектромережбуд&#187;. Дружина депутата &#171;НФ&#187; <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_b2de4cbf-2b2d-4096-b680-1567d9eb710c">Миколи Княжицького</a> володіє 22,5% капіталу компанії &#171;Астра фінанс&#187;, кінцевим бенефіціаром якої є син позафракційного депутата <a targe="_blank" href="https://declarations.com.ua/declaration/nacp_3b8df879-d123-414d-b89f-0a29030c6aa2">Костянтина Жеваго.</a></p>
+    <p>Загалом із 261 топ-чиновника, які задекларували певні корпоративні права, у 96 (37%) такі права записані виключно на членів родини, тоді як у самого декларанта корпоративних прав немає. </p>
+    <h3>Висновки</h3>
+    <ul>
+    <li>З майже мільйона чиновників більше 30 000 (~3%) задекларували ті чи інші корпоративні права. Концентрація інвесторів помітно зростає з просуванням по владних щаблях: серед депутатів більше половини мають корпоративні права, а президент &#8212; один із найбільших інвесторів за кількістю пов’язаних компаній. 
+    Мережевий аналіз допомагає знаходити бізнес-зв’язки. Наприклад, Петро Порошенко через більш ніж 100 компаній пов’язаний з понад 200 чиновниками, але серед них явно вирізняються його бізнес-партнери &#8212; Ігор Кононенко і Олег Гладковський (екс-Свинарчук).</li>
+    <li>З більш ніж 600 топ-чиновників (народні депутати, члени Кабінету Міністрів, президент, керівники державних установ) близько 40% декларують ті чи інші корпоративні права. Більшість цих чиновників не мають прямих бізнес-зв’язків, однак серед тих, хто має, є цікаві кейси, у тому числі зв’язки через бізнес членів родини. </li>
+    <li>З тих топ-чиновників, які задекларували ті чи інші корпоративні права (261 особа), у 37% такі права записані виключно на членів родини. </li>
+    </ul>
+    <p>Звичайно, наявність спільних бізнес-інтересів не означає, що чиновники обов’язково увійдуть у змову, особливо якщо йдеться про власність у великих акціонерних товариствах. Однак такі зв’язки можуть бути фактором ризику, і корисно мати дані, які дозволяють швидко перевірити їх наявність та запобігти зловживанням. </p>
+</div>
+        <!-- соцсети -->
+    <div class="skinny" style="text-align: center; margin-top:30px; margin-bottom:30px;">
+        <div class="ssk-group ssk-grayscale ssk-round">
+            <a href="https://www.facebook.com/sharer.php?u=https://voxukraine.org/longreads/declarations-graph/index.html" class="ssk ssk-facebook"></a>
+            <a href="https://twitter.com/intent/tweet?https://voxukraine.org/longreads/declarations-graph/index.html" class="ssk ssk-twitter"></a>
+        </div>
+    </div>
+
+    <!-- вставка "поддержать" -->
+    <div class="sprt">
+        <div class="support"><p class="s-text">Ми віримо, що слова мають силу, а ідеї – визначний вплив. VoxUkraine об’єднує найкращих економістів та допомагає їм доносити ідеї до десятків тисяч співвітчизників. Контент VoxUkraine безкоштовний (і завжди буде безкоштовним), ми не продаємо рекламу та не займаємось лобізмом. Щоб проводити більше досліджень, створювати нові впливові проекти та публікувати багато якісних статей, нам потрібні розумні люди і гроші. Люди є! Підтримай VoxUkraine. Разом ми зробимо більше!</p></div>
+        <div class="btn"><button class="button"><a href="https://www.liqpay.com/api/3/checkout?data=eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJwYXlkb25hdGUiLCJwdWJsaWNfa2V5IjoiaTU1NDYwNjQ0NzM4IiwiYW1vdW50IjoiMTAwMCIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiLQkdC70LDQs9C%2B0LTRltC50L3QuNC5INCy0L3QtdGB0L7QuiDQvdCwINC%2F0YDQvtC10LrRgiBcItCa0JrQlCDQtNC10L%2FRg9GC0LDRgtGW0LJcIiIsInR5cGUiOiJkb25hdGUiLCJsYW5ndWFnZSI6InJ1In0%3D&signature=Uj2t9YVlDyvaezKC2tXwOwsKwzg%3D">Підтримати VoxUkraine</a></button></div>
+    </div>
+    <!-- больше по теме -->
+    <div class="other-space">
+            <div class="other">
+                <div class="n-other">
+                    <img class="other-img" src="https://voxukraine.org/wp-content/uploads/2018/09/kkd-main-450x250.png">
+                    <div class="ne-white">
+                    <a target="_blank" href="https://voxukraine.org/uk/category/temi/spetsproekti-uk/"><p class="other-head">Спецпроекти</p></a>
+                    <a target="_blank" href="https://voxukraine.org/uk/prijshov-natisnuv-peremig-yaki-deputati-najkrashhe-golosuvali-za-reformi-pid-chas-vosmoyi-sesiyi-vr/"><p class="other-zag">Прийшов, натиснув, переміг. Які депутати найкраще голосували за реформи під час восьмої сесії ВР</p></a>
+                    <p class="other-author">Автор: <b>Олександр Надельнюк</b></a></p>
+                    </div>
+                </div>
+                <div class="n-other">
+                    <img class="other-img" src="https://voxukraine.org/wp-content/uploads/2018/09/Depositphotos_44543229_m-2015-450x250.jpg">
+                    <div class="ne-white">
+                    <a target="_blank" href="https://voxukraine.org/uk/voxcheck/"><p class="other-head">VOXCHECK</p></a>
+                    <a target="_blank" href="https://voxukraine.org/uk/znov-v-tu-zh-samu-pastku-chotiri-uroki-yaki-povinna-vivchiti-ukrayina-z-krizi-v-turtsiyi/"><p class="other-zag">Знов у ту ж саму пастку: чотири уроки, які повинна вивчити Україна з кризи в Туреччині</p></a>
+                    <p class="other-author">Автор: <b>Редколегія VoxUkraine</b></p>
+                </div>
+                </div>
+                <div class="n-other">
+                    <img class="other-img" src="https://voxukraine.org/wp-content/uploads/2018/09/Budget1-450x250.jpg">
+                    <div class="ne-white">
+                    <a target="_blank" href="https://voxukraine.org/uk/category/temi/ekonomika/"><p class="other-head">ЕКОНОМІКА</p></a>
+                    <a target="_blank" href="https://voxukraine.org/cards/budget/index.html"><p class="other-zag">130 000 000 000 неочевидних проблем українського бюджету. Що коїться у державних фінансах?</p></a>
+                    <p class="other-author">Автор: <b>Олена Білан</b></p>
+                </div>
+                </div>
+                <div class="n-other">
+                    <img class="other-img" src="https://voxukraine.org/wp-content/uploads/2018/09/voxcheck-450x250.png">
+                    <div class="ne-white">
+                    <a target="_blank" href="https://voxukraine.org/uk/voxcheck/"><p class="other-head">VOXCHECK</p></a>
+                    <a target="_blank" href="https://voxukraine.org/longreads/voxcheck-q2/index.html"><p class="other-zag">Помилка президента: Порошенко став говорити менше правди. Рейтинг маніпуляторів і брехунів VoxCheck</p></a>
+                    <p class="other-author">Автор: <b> Колектив авторів</a></b></p>
+                </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-info">
+        <div class="one-third-left"><p>VoxUkraine — це незалежна та незаангажована аналітична платформа, яку заснувала та очолює команда досвідчених та висококваліфікованих економістів і юристів, що працюють в Україні та за кордоном. Метою VoxUkraine є підтримка економічних реформ у країні через просування заснованого на дослідженнях аналізу економічної політики, незалежну оцінку економічних перетворень, здійснення моніторингу та інтеграцію України в глобальну мережу економістів і політичних лідерів.</p><p>© VOXUKRAINE</p></div>
+        <div class="one-third-center">
+            <ul class="footer-list">
+		      <li><a style="color: #f0f0f0;" href="https://voxukraine.org/uk/footer/support-2/">Support Vox</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://voxukraine.org/uk/footer/to-authors/">To Authors</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://voxukraine.org/uk/voxcheck-f-a-q/">VOXCHECK F.A.Q.</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://voxukraine.org/uk/footer/fellows-and-volunters/">Fellows and Volunters</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://voxukraine.org/uk/reports/">Annual Reports</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://voxukraine.org/uk/terms-and-privacy/">Terms and Privacy</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://voxukraine.org/uk/footer/join-us/">Contact us</a></li>
+		    </ul>
+		  </div>
+		  <div class="one-third-right">
+		    <ul class="footer-list">
+		      <li><a style="color: #f0f0f0;" href="https://facebook.com/VoxUkraine.Ukranian/">Facebook</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://twitter.com/VoxUkraine">Twitter</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://t.me/vox_ukraine">Telegram</a></li>
+		      <li><a style="color: #f0f0f0;" href="https://www.youtube.com/channel/UCR6MsnwJpQUJMYbef2vRbvw">Youtube</a></li>
+		    </ul>
+        </div>
+        <div class="clear-third"></div>
+        </div>
+        </div>
+    </footer>
+    <!-- Social Share Kit JS -->
+    <script type="text/javascript" src="sk/dist/js/social-share-kit.min.js"></script>
+    <link rel="stylesheet" href="sk/dist/css/social-share-kit.css" type="text/css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="js/script.js?v2"></script>
+    
+    <!-- Google analytics-->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54527150-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <script>
+        // Init Social Share Kit
+        SocialShareKit.init({
+            'url': 'https://voxukraine.org/longreads/declarations-graph/index.html',
+            'twitter': {
+                'title': 'Property — connecting politicians: мережевий аналіз декларацій української влади',
+                'via': 'voxukraine.org'
+            }
+        });
+    </script>
+</body>
+</html>
